@@ -1,6 +1,6 @@
 <?php
 
-class User_Model extends jream\mvc\Model
+class User_Model extends Model
 {
     public function __construct()
     {
@@ -9,6 +9,6 @@ class User_Model extends jream\mvc\Model
     
     public function login($data)
     {
-        print_r($data);
+        
     }
 }

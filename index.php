@@ -13,11 +13,3 @@ $bootstrap->init();
 define('BASE_URI', $bootstrap->uriSlashPath);
 
 
-$config = array();
-$config['db'] = array(
-    'host' => '127.0.0.1',
-    'name' => 'jreamy',
-    'user' => 'root',
-    'pass' => ''
-);
-

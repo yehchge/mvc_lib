@@ -20,4 +20,4 @@ $(function() {
     });
 
 });
-</sceipt>
+</script>

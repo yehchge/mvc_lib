@@ -10,12 +10,13 @@ class Model
     public function __construct()
     {
         /** A database connection */
-//        $this->db = new jream\Database(array(
-//            'host' => '127.0.0.1',
-//            'name' => 'library-skeleton',
-//            'user' => 'root',
-//            'pass' => ''
-//        ));
+        $this->db = new jream\Database(array(
+            'type' => 'mysql',
+            'host' => 'localhost',
+            'name' => 'library-skeleton',
+            'user' => 'root',
+            'pass' => ''
+        ));
     }
     
     /**

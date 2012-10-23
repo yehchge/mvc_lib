@@ -10,9 +10,9 @@ class Dashboard extends jream\mvc\Controller
     
     public function index()
     {
-        $this->view->render('dashboard/header');
+        $this->view->render('dashboard/inc/header');
         $this->view->render('dashboard/dashboard');
-        $this->view->render('dashboard/footer');
+        $this->view->render('dashboard/inc/footer');
     }
 
 }

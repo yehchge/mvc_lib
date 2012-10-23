@@ -5,6 +5,9 @@
     <label></label> <input type="submit" value="Login" />
 </form>
 
+<p>Login: admin@admin.com</p>
+<p>Password: admin</p>
+
 <script>
 $(function() {
 
@@ -15,7 +18,11 @@ $(function() {
         var postData = $(this).serialize();
         
         $.post(url, postData, function(o) {
-        
+            if (o.success == 1) {
+                window.location.href = 'dashboard'
+            } else {
+                $("#status").html(o.errorMessage);
+            }
         });
     });
 

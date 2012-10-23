@@ -7,15 +7,15 @@
 </head>
 <body>
 
-<header>JREAM: Library Skeleton</header>
+<header>Dashboard</header>
 
 <!-- start:content_wrap -->
 <div id="content_wrap">
 
 <!-- start:nav -->
 <nav>
-    <a href="<?=BASE_URI?>/">Home</a>
-    <a href="<?=BASE_URI?>login">Login</a>
+    <a href="<?=BASE_URI?>/dashboard">Dashboard</a>
+    <a href="<?=BASE_URI?>logout">Logout</a>
 </nav>
 <!-- end:nav -->
 

@@ -19,17 +19,23 @@ class Login extends jream\mvc\Controller
     {
         try {
             $input = new \jream\Input();
-            $input  ->post('email')
+            $input  ->post('email', true)
                         ->validate('email')
-                    ->post('password')
-                        ->format('hash', 'sha256');
+                    ->post('password', true)
+                        ->format('hash', array('sha256', HASH_KEY));
             $input  ->submit();
 
             $user_model = $this->loadModel('user');
-            $user_model->login($input->fetch());
+            $result = $user_model->login($input->fetch());
             
-            // set session here
-            jream\Output::success();
+            if ($result == false) {
+                jream\Output::error("No user found");
+            } else {
+                $_SESSION['user_id'] = $result;
+                $_SESSION['user_key'] = jream\Hash::create('sha256', $result, HASH_KEY);
+                jream\Output::success();
+            }
+            
             
         } catch (Exception $e) {
             jream\Output::error($input->fetchErrors());

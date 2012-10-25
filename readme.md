@@ -9,6 +9,7 @@ This is a simple example of using the MVC Framework.
 - Your configuration settings in the index.php file
 - Your database settings are in the model/model.php file
 - Make sure you see the .htaccess file (It's hidden on Linux/Mac)
+- I made sure to include _.htaccess if you dont see it, just rename it to .htaccess
 
 ## If you have problems or suggestions
 

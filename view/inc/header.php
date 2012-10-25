@@ -14,7 +14,7 @@
 
 <!-- start:nav -->
 <nav>
-    <a href="<?=BASE_URI?>/">Home</a>
+    <a href="<?=BASE_URI?>">Home</a>
     <a href="<?=BASE_URI?>login">Login</a>
 </nav>
 <!-- end:nav -->

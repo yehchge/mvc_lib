@@ -4,6 +4,14 @@
 # jream/mvc
 This is a minimalistic MVC system whereby you have plenty of freedom.
 
+    Bootstrap::contruct();
+    Bootstrap::setPathRoot($directory);
+    Bootstrap::setPathController($path); // Optional, Default: /controller
+    Bootstrap::setPathModel($path); // Optional, Default: /model
+    Bootstrap::setPathView($path); // Optional, Default: /view
+    Bootstrap::setControllerDefault($string);
+    View::render($path, $optional_data_to_pass);
+    Controller::loadModel($model_name);
 
 ### Default Folder Structure
 
@@ -79,15 +87,36 @@ Setup the default controller. In the user method we pass an argument, to access 
 		}
 	}
 	
+### /model/model.php
+
+Setup your base model, what you decide to put in here is up to you!
+
+    <?php
+    class Model
+    {
+        public function __construct()
+        {
+            // You could use a database connection for all models
+            //$this->db = new Database();
+        }
+    }
+
 ### /model/index_model.php
 
-Setup a base model wherever you decide to place your models. This is what
-all of your other models will extend. The reason to do this is to setup a
-model any way you like.
+Setup a sample model. This is where you would want to tie in your business logic. Notice that it extends the base model we created above.
 
 	<?php
-	class Model
+	class User_Model extends Model
 	{
+		public function __construct()
+		{
+			parent::__construct();
+		}
+
+		public function test($id)
+		{
+			return __CLASS__ . " was called passing id: $id";
+		}
 	}
 
 ### /view/index.php

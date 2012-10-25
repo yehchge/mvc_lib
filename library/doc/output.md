@@ -2,45 +2,37 @@
 * * *
 
 # jream/Output
+Outputs JSON data in an ideal consistent package. 
 
-Outputs JSON data in a common package. Use it for AJAX responses.
+    Output::json($string);
+    Output::success($optional_data);
+    Output::error($optional_string);
+    
+### Output standard JSON
+To output your data with appropriate headers, it's ez-peasy.
 
-### Plain Output 
+    jream\Output::json('String to turn into json');
+    
+### Success Package
 
-	$data = array(
-		'first_name' => 'Ben', 
-		'last_name' => 'Franklin
-	');
+    jream\Output::success();
+    jream\Output::success('Optional Success Message/Data');
+    
+    {
+        success: 1, 
+        errorMessage: null, 
+        data: 'Optional Success Message/Data'
+    }
 
-	jream\Output::json($data);
+### Error Package
 
-### Success
+    jream\Output::error('Optional Error Message/Data');
 
-	jream\Output::success($data);
-
-	/** Result: **/
-	{
-		success: 1
-		errorMessage: null,
-		data: {
-			first_name: 'Ben'
-			last_name: 'Franklin'
-		}
-	}
-
-### Error
-
-	jream\Output::error('There was an error')    
-
-	/** Result: **/
-	{
-		success: 0
-		errorMessage: 'There was an error',
-		data: null
-	}
-
-
-
+    {
+        success: 0, 
+        errorMessage: 'Optional Error Message/Data', 
+        data: null
+    }
 
 * * *
 Copyright (C), 2011-12 Jesse Boyer (http://jream.com) GNU General Public License 3 (http://www.gnu.org/licenses/)

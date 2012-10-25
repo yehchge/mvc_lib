@@ -4,6 +4,8 @@
 # jream/Autoload
 Loads objects only when they are called and needed.
 
+    Autoload::__construct($path);
+
 ### Using it
 
 A baby could use it.

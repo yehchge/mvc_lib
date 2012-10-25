@@ -37,26 +37,26 @@ echo '<pre>';
 
 $db = new jream\Database($config);
 
-$db->replace('user', array('name' => '123s', 'userid' => '10001'));
-echo $db->getQuery();
+$db->replace('user', array('name' => 'AQAAAA', 'userid' => '10005'));
+echo $db->showQuery();
 
-$db->insert('user', array('name' => 'Jesse'));
-echo $db->getQuery();
-$db->update('user', array('name' => 'Other'), "userid = '10002'");
-echo $db->getQuery();
-$db->delete('user', "userid = '10000'");
-echo $db->getQuery();
+// $db->insert('user', array('name' => 'Jesse'));
+// echo $db->showQuery();
+// $db->update('user', array('name' => 'DOG'), "userid = :userid", array('userid' => 10002));
+// echo $db->showQuery();
+// $db->delete('user', "userid = :userid", array('userid' => '10001'));
+// echo $db->showQuery();
 
 $db->setFetchMode(\PDO::FETCH_ASSOC);
-$result = $db->select('SELECT * FROM user', array());
+$result = $db->select('SELECT * FROM user WHERE userid = :userid', array('userid' => 10003));
 print_r($result);
 
-$db->setFetchMode(\PDO::FETCH_CLASS);
-$result = $db->select('SELECT * FROM user', array());
-print_r($result);
+// $db->setFetchMode(\PDO::FETCH_CLASS);
+// $result = $db->select('SELECT * FROM user', array());
+// print_r($result);
 
-$result = $db->select('SELECT * FROM user', array(), \PDO::FETCH_NUM);
-print_r($result);
+// $result = $db->select('SELECT * FROM user', array(), \PDO::FETCH_NUM);
+// print_r($result);
 
 
 $cols = $db->showColumns('user');

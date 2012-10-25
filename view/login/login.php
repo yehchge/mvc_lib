@@ -1,12 +1,20 @@
+<p>
+    Everyone always wants a login system. Well here you have a very simple
+    example. There is jQuery in this view file (login/login.php) which posts
+    the form.
+</p>
 
-<form action="login/submit" method="post" id="loginForm">
-    <label>Email</label> <input type="text" name="email" />
-    <label>Password</label> <input type="password" name="password" />
-    <label></label> <input type="submit" value="Login" />
-</form>
+<fieldset>
+    <form action="login/submit" method="post" id="loginForm">
+        <label>Email</label> <input type="text" name="email" value="admin@admin.com" /><br />
+        <label>Password</label> <input type="password" name="password" /><br />
+        <label>&nbsp;</label> <input type="submit" value="Login" />
+    </form>
+</fieldset>
 
-<p>Login: admin@admin.com</p>
-<p>Password: admin</p>
+<br />
+
+<p>The Password is: admin</p>
 
 <script>
 $(function() {
@@ -21,7 +29,16 @@ $(function() {
             if (o.success == 1) {
                 window.location.href = 'dashboard'
             } else {
-                $("#status").html(o.errorMessage);
+                var status = '';
+                for (var key in o.errorMessage) {
+                    if (o.errorMessage.hasOwnProperty(key)) {
+                        status += key + ' ' + o.errorMessage[key] + '<br />';
+                    }
+                    
+                }
+                
+                $("#status").html(status).show();
+                
             }
         });
     });

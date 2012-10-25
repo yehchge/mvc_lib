@@ -3,36 +3,28 @@
 
 The JREAM Library is an Open Source PHP library licensed under the GPLv3 (http://www.gnu.org/licenses/).
 
+## Overview
+I care about making handy stuff very easy to use. Clever programming and over-engineering can be fun to write, 
+but it stinks to use. I hope I didn't get buck-wild and miss the point. Hope you guys enjoy the library. 
+
+Please always download the latest stable version from the GitHub *Tags* (Under the Branches Drop Down).
+
 ## Minimum Requirements
 - PHP 5.3
 - For Database: MySQL PDO Enabled
+- For Image: GD Library
 
-##Namespaces
+##Get Started
 
-I find namespaces ugly in PHP, but they are necessary so you don't conflict with other libraries. 
+The easiest way to start is to look at examples, copy and paste from the docs:
+- In the /doc folder
+- Or here: <http://jream.com/doc/>
 
-It's easiest to just define a `use` case at the top of your file if you are not planning on prefixing every class, eg:
+##At The End of the Day
 
-    <?php
-    use jream\Output, use jream\Autoload;
+If this isn't easy to use, trash it and forget about it. The Library was created with you in mind, so that you
+can drop it in a folder and use it with a baby learning curve -- often that's a task that much easier said than done!
 
-    require 'jream/autoload.php';
-    new Autoload('jream/');
-    Output::success('It worked!');
-
-##MVC
-
-- To access urls go to http://localhost/index.php/controller/method
-- To use mod_rewrite with .htaccess use:
-
-.htaccess code:
-
-    RewriteEngine On
-    # Change your rewrite-base if you are using subfolders
-    RewriteBase /
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.+)$ index.php?uri=$1 [QSA,L]
 
 ***
 ## 

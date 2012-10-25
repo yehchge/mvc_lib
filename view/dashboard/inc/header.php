@@ -14,7 +14,7 @@
 
 <!-- start:nav -->
 <nav>
-    <a href="<?=BASE_URI?>/dashboard">Dashboard</a>
+    <a href="<?=BASE_URI?>dashboard">Dashboard</a>
     <a href="<?=BASE_URI?>logout">Logout</a>
 </nav>
 <!-- end:nav -->

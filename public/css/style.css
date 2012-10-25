@@ -7,21 +7,25 @@ blockquote,q{quotes:none}
 blockquote:before,blockquote:after,q:before,q:after{content:none}
 table{border-collapse:collapse;border-spacing:0}
 
+/** Struct */
 body {
-    background: #dbe9ff;
+    background: #F9F5F2;
     color: #141414;
     font: 15px arial, sans-serif;
 }
 
 header, nav, #content, footer {
-    width: 980px;
+    width: 800px;
     margin: 0 auto;
     padding: 10px;
 }
 
-header {
+header, footer {
     font: 25px 'trebuchet ms', arial, sans-serif;
-    border-bottom: 2px solid #969696;
+    background: #133361;
+    margin: 5px auto;
+    border-radius: 4px;
+    color: #fff;
 }
 
 nav {
@@ -31,7 +35,18 @@ nav {
 }
 
 footer {
+    font: 16px 'trebuchet ms', 'arial' ,sans-serif;
+}
 
+footer a {
+    color: #fff;
+}
+
+#status {
+    background: #ffe0e1;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
 }
 
 /** Anchor */
@@ -40,5 +55,49 @@ nav a {
     font-weight: bolder;
     padding: 4px 10px;
     margin: 0 10px 0 0;
-    background: #b2d0ff;
+    background: #44679b;
+    color: #fff;
+    border-radius: 3px;
+}
+
+/** Body */
+p {
+    line-height: 150%;
+    margin-bottom: 20px;
+}
+
+fieldset {
+    padding: 10px;
+    background: #f2e9e3;
+    border-radius: 4px;
+}
+
+form {   
+    margin: 15px 0;
+}
+
+form label {
+    width: 100px;
+    float: left;
+}
+
+
+form input {
+    padding: 4px;
+    border: 1px solid silver;
+    border-radius: 2px;
+    color: #333
+}
+
+form input[type=submit] {
+    padding: 4px 14px;
+    cursor: pointer;
+}
+
+div.clear {
+    clear: both;
+}
+
+b {
+    font-weight: bolder;
 }

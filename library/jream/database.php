@@ -108,11 +108,7 @@ class Database extends \PDO
         throw new \Exception("$bindParams must be an array");
         
         /** Run Query and Bind the Values */
-        $sth = $this->prepare($this->_sql);
-        foreach($bindParams as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
+        $sth = $this->_prepareAndBind($bindParams);
     
         $result = $sth->execute();
         
@@ -138,14 +134,10 @@ class Database extends \PDO
         $insertString = $this->_prepareInsertString($data);
 
         /** Store the SQL for use with fetching it when desired */
-        $this->_sql = "INSERT INTO $table (`{$insertString['names']}`) VALUES({$insertString['values']})";
+        $this->_sql = "INSERT INTO `{$table}` (`{$insertString['names']}`) VALUES({$insertString['values']})";
         
         /** Bind Values */
-        $sth = $this->prepare($this->_sql);
-        foreach ($data as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
+        $sth = $this->_prepareAndBind($data);
 
         /** Execute Query */
         $result = $sth->execute();
@@ -173,20 +165,13 @@ class Database extends \PDO
         $updateString = $this->_prepareUpdateString($data);
 
         /** Store the SQL for use with fetching it when desired */
-        $this->_sql = "UPDATE $table SET $updateString WHERE $where";
+        $this->_sql = "UPDATE `{$table}` SET $updateString WHERE $where";
         
         /** Bind Values */
-        $sth = $this->prepare($this->_sql);
-        foreach ($data as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
+        $sth = $this->_prepareAndBind($data);
 
         /** Bind Where Params */
-        foreach($bindWhereParams as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
+        $sth = $this->_prepareAndBind($bindWhereParams, $sth);
         
         /** Execute Query */
         $result = $sth->execute();
@@ -213,15 +198,11 @@ class Database extends \PDO
         $updateString = $this->_prepareUpdateString($data);
 
         /** Prepare SQL Code */
-        $this->_sql = "REPLACE INTO $table SET $updateString";
+        $this->_sql = "REPLACE INTO `{$table}` SET $updateString";
         
         /** Bind Values */
-        $sth = $this->prepare($this->_sql);
-        foreach ($data as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
-
+        $sth = $this->_prepareAndBind($data);
+        
         /** Execute Query */
         $result = $sth->execute();
 
@@ -244,14 +225,10 @@ class Database extends \PDO
     public function delete($table, $where, $bindWhereParams = array())
     {
         /** Prepare SQL Code */
-        $this->_sql = "DELETE FROM $table WHERE $where";
+        $this->_sql = "DELETE FROM `{$table}` WHERE $where";
         
         /** Bind Values */
-        $sth = $this->prepare($this->_sql);
-        foreach ($bindWhereParams as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
+        $sth = $this->_prepareAndBind($bindWhereParams);        
         
         /** Execute Query */
         $result = $sth->execute();
@@ -276,14 +253,10 @@ class Database extends \PDO
         $updateString = $this->_prepareUpdateString($data);
 
         /** Store the SQL for use with fetching it when desired */
-        $this->_sql = "INSERT INTO $table (`{$insertString['names']}`) VALUES({$insertString['values']}) ON DUPLICATE KEY UPDATE $updateString";
+        $this->_sql = "INSERT INTO `{$table}` (`{$insertString['names']}`) VALUES({$insertString['values']}) ON DUPLICATE KEY UPDATE {$updateString}";
         
         /** Bind Values */
-        $sth = $this->prepare($this->_sql);
-        foreach ($data as $key => $value)
-        {
-            $sth->bindValue(":$key", $value);
-        }
+        $sth = $this->_prepareAndBind($data);
 
         /** Execute Query */
         $result = $sth->execute();
@@ -364,6 +337,34 @@ class Database extends \PDO
         return $output;
     }
 
+    /**
+     * _prepareAndBind - Binds values to the Statement Handler
+     *
+     * @param array $data
+     * @param object $reuseStatement If you need to reuse the statement to apply another bind
+     *
+     * @return object
+     */
+    private function _prepareAndBind($data, $reuseStatement = false)
+    {
+        if ($reuseStatement == false) {
+            $sth = $this->prepare($this->_sql);
+        } else {
+            $sth = $reuseStatement;
+        }
+        
+        foreach ($data as $key => $value)
+        {
+            if (is_int($value)) {
+                $sth->bindParam(":$key", $value, \PDO::PARAM_INT);
+            } else {
+                $sth->bindParam(":$key", $value);
+            }
+        }
+        
+        return $sth;
+    }
+    
     /**
      * _prepareInsertString - Handles an array and turns it into SQL code
      * 

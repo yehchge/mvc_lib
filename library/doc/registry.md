@@ -5,6 +5,9 @@
 
 An internal registry to save and fetch anything at any location.
 
+    Registry::set($key, $value);
+    Registry::fetch($key);
+
 ### Set
 
 	$data = new stdClass();

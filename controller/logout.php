@@ -8,10 +8,13 @@ class Logout extends jream\mvc\Controller
         parent::__construct();
     }
     
+    /**
+     * This just logs a user out whenever /logout is hit
+     */
     public function index()
     {
         session_destroy();
-        header('location: /');
+        header('location: ' . BASE_URI);
     }
 
 }

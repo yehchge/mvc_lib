@@ -5,6 +5,8 @@
 
 It just encrypts a data.
 
+    Hash::create($encryption, $string, $optional_key);
+
 ### Create a Hash
 
 	/** Hash something */

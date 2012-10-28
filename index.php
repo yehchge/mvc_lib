@@ -3,8 +3,6 @@
 require_once 'library/jream/autoload.php';
 new jream\Autoload('library/jream');
 
-
-
 // Change this to your folder path, otherwise just use: /
 define('BASE_URI', '/library-skeleton/');
 

@@ -356,9 +356,9 @@ class Database extends \PDO
         foreach ($data as $key => $value)
         {
             if (is_int($value)) {
-                $sth->bindParam(":$key", $value, \PDO::PARAM_INT);
+                $sth->bindValue(":$key", $value, \PDO::PARAM_INT);
             } else {
-                $sth->bindParam(":$key", $value);
+                $sth->bindValue(":$key", $value, \PDO::PARAM_STR);
             }
         }
         
@@ -416,7 +416,7 @@ class Database extends \PDO
         if ($result == false) 
         {
             $error =  $method . " did not execute properly";
-            throw new \Exception($error, $error);
+            throw new \Exception($error);
         }
     }
     

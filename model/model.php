@@ -7,6 +7,10 @@ class Model
 {
     protected $db;
     
+    /**
+     * Init anything we need in the models,
+     * I always like a database connection
+     */
     public function __construct()
     {
         /** A database connection */

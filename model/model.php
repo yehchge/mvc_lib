@@ -18,8 +18,8 @@ class Model
             'type' => 'mysql',
             'host' => 'localhost',
             'name' => 'library-skeleton',
-            'user' => 'root',
-            'pass' => ''
+            'user' => 'robot',
+            'pass' => 'robot'
         ));
     }
     
